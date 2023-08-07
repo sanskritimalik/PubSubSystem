@@ -1,9 +1,5 @@
 package Handler.MessageHandler;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import PubSub.PubSub;
 import Subscriber.Subscriber;
 
@@ -21,9 +17,7 @@ public class AtMostNMessageHandler implements MessageHandler {
         while (true) {
             int message = pubSub.getMessage();
             int count = 0;
-            List<Subscriber> subscribers = new ArrayList<>(pubSub.getSubscribers());
-            Collections.reverse(subscribers);
-            for (Subscriber subscriber : subscribers) {
+            for (Subscriber subscriber : pubSub.getSubscribers()) {
                 subscriber.receiveMessage(message);
                 count++;
                 if (count >= n) {

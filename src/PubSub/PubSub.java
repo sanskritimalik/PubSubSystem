@@ -1,7 +1,7 @@
 package PubSub;
 
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -11,7 +11,7 @@ import Handler.MessageHandlerFactory.MessageHandlerFactory;
 import Subscriber.Subscriber;
 
 public class PubSub {
-    private final Set<Subscriber> subscribers = Collections.synchronizedSet(new HashSet<>());
+    private final Set<Subscriber> subscribers = Collections.synchronizedSet(new LinkedHashSet<>());
     private final BlockingQueue<Integer> messageQueue = new LinkedBlockingQueue<>();
     private final MessageHandler messageHandler;
 

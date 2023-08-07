@@ -1,9 +1,5 @@
 package Handler.MessageHandler;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import PubSub.PubSub;
 import Subscriber.Subscriber;
 
@@ -20,10 +16,8 @@ public class AtLeastNMessageHandler implements MessageHandler {
     public void handleMessages() {
         while (true) {
             int message = pubSub.getMessage();
-            List<Subscriber> subscribers = new ArrayList<>(pubSub.getSubscribers());
-            Collections.reverse(subscribers);
-            if (subscribers.size() >= n) {
-                for (Subscriber subscriber : subscribers) {
+            if (pubSub.getSubscribers().size() >= n) {
+                for (Subscriber subscriber : pubSub.getSubscribers()) {
                     subscriber.receiveMessage(message);
                 }
             }
